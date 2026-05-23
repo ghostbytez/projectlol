@@ -383,6 +383,16 @@ div#titlepage {
             position:absolute;
             bottom:48px
         }
+        
+    ::selection {
+        background-color: #111111; /* Subtle light gray */
+        color: #e2e2e2;            /* Dark text color */
+    }
+
+    ::-moz-selection {
+        background-color: #111111;
+        color: #e2e2e2;
+    }
 
     @media (prefers-color-scheme: dark) {
 
@@ -403,6 +413,15 @@ div#titlepage {
         a:hover {
             color: #121214;            
             background-color: #eaeaea; 
+        }
+        ::selection {
+            background-color: #e2e2e2; 
+            color: #000000;          
+        }
+
+        ::-moz-selection {
+            background-color: #e2e2e2;
+            color: #000000;
         }
     }
 
