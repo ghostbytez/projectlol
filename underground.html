@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site - Map</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8f9fa; 
+            color: #212529;            
+            line-height: 1.6;          
+            max-width: 1100px;         
+            margin: 40px auto;         
+            padding: 0 20px;
+            text-align: center;
+        } 
+
+        .map-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        
+        .map-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: #ff3131; 
+            color: #ffffff;             
+            border: 2px solid #ffffff;  
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;         
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .map-pin:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            background-color: #ffffff;
+            color: #ff3131;
+            border-color: #ff3131;
+        }
+
+        
+[popover] {
+            font-family: 'Courier New', Courier, monospace;
+            border: 2px solid #212529;
+            background-color: #f8f9fa;
+            color: #212529;
+            padding: 24px;
+            max-width: 650px;          
+            width: 95%;                
+            
+        
+            max-height: 85vh;         
+            overflow-y: auto;          
+
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        [popover]::backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .close-btn {
+            font-family: 'Courier New', Courier, monospace;
+            background: #212529;
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .floor-nav {
+            margin: 20px 0 30px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .floor-nav a {
+            color: #212529;            
+            text-decoration: none;     
+            margin: 0 6px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+       
+        .floor-nav a:hover {
+            background-color: #212529;
+            color: #ffffff;
+        }
+
+        .floor-nav a.active {
+            border-color: hsl(0, 0%, 100%);
+        }
+
+        /* DARK MODE */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #040404; 
+                color: #eaeaea;            
+            }
+
+            .map-container {
+                background-color: #121214; 
+                border-color: #333333;
+            }
+
+            
+            .map-image {
+                filter: invert(1) hue-rotate(180deg);
+            }
+            
+            [popover] {
+                background-color: #121214;
+                color: #eaeaea;
+                border-color: #eaeaea;
+            }
+            .close-btn {
+                background-color: #eaeaea;
+                color: #121214;
+            }
+            .back-home {
+                color: #eaeaea;
+            }
+
+        .floor-nav a {
+                color: #eaeaea;       
+            }
+
+            .floor-nav a:hover {
+                background-color: #eaeaea;
+                color: #040404;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>UNDERGROUND FLOOR MAP</h1>
+    <p>Click on a red pin to view room details.</p>
+
+ 
+    <div class="map-container">
+        <img src="images/UndergroundMAP.jpg" alt="First Floor Map" class="map-image">
+
+        <button popovertarget="room-one-popup" class="map-pin" style="top: 64.5%; left: 24.9%;">1</button>
+        <button popovertarget="room-two-popup" class="map-pin" style="top: 77.5%; left: 34.7%;">2</button>
+        <button popovertarget="room-3-popup" class="map-pin" style="top: 40.4%; left: 35.5%;">3</button>
+        <button popovertarget="room-4-popup" class="map-pin" style="top: 40.9%; left: 41.9%;">4</button>
+        <button popovertarget="room-5-popup" class="map-pin" style="top: 12.7%; left: 35.2%;">5</button>
+        <button popovertarget="room-6-popup" class="map-pin" style="top: 26.8%; left: 49.5%;">6</button>
+        <button popovertarget="room-7-popup" class="map-pin" style="top: 75.4%; left: 64.7%;">7</button>
+        <button popovertarget="room-8-popup" class="map-pin" style="top: 47.8%; left: 76.5%;">8</button>
+        <button popovertarget="room-9-popup" class="map-pin" style="top: 52.9%; left: 91.7%;">9</button>
+        <button popovertarget="room-10-popup" class="map-pin" style="top: 82.3%; left: 79.1%;">10</button>
+        <button popovertarget="room-10-popup" class="map-pin" style="top: 25.0%; left: 78.5%;;">10</button>
+        <button popovertarget="room-11-popup" class="map-pin" style="top: 52.1%; left: 56.3%;">G</button>
+    </div>
+
+    <div id="room-one-popup" popover>
+        <h3>MECHANICAL ROOM</h3>
+        <p>There's so much water in this place.</p>
+        <img src="images/mechanicalroom.jpg" alt="Room 1 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-one-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-two-popup" popover>
+        <h3>STAIRCASE</h3>
+        <p>Are you here for a bleesing?</p>
+        <img src="images/staircase.jpg" alt="Room 2 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-two-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-3-popup" popover>
+        <h3>CHANGING ROOM</h3>
+        <p>Get into your uniform before getting into water.</p>
+        <img src="images/changingroom.jpg" alt="Room 3 Photo" style="width: 60%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-3-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-4-popup" popover>
+        <h3>LOCKER ROOM</h3>
+        <p>Don't loose your stuff!</p>
+        <img src="images/lockerroom.jpg" alt="Room 4 Photo" style="width: 80%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-4-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-5-popup" popover>
+        <h3>LAUNDRY ROOM</h3>
+        <p>Please watch your uniform and towels after use.</p>
+        <img src="images/laundryroom.jpg" alt="Room 5 Photo" style="width: 60%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-5-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-6-popup" popover>
+        <h3>APOTHECARY</h3>
+        <p>For all kind of rites..</p>
+        <img src="images/apothecary.jpg" alt="Room 6 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-6-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-7-popup" popover>
+        <h3>Room 7 Details</h3>
+        <p>What's for dinner?</p>
+        <img src="images/winecrypt(1).jpg" alt="Room 7 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-7-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-8-popup" popover>
+        <h3>ALTAR ROOM</h3>
+        <p>Something bad happened down there.</p>
+        <img src="images/altarroom.jpg" alt="Room 8 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-8-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-9-popup" popover>
+        <h3>CLEANSING ROOM</h3>
+        <p>Technically, it should be "exorcism room", but that sounds too scary.</p>
+        <img src="images/cleansingroom.jpg" alt="Room 9 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-9-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-10-popup" popover>
+        <h3>STAIRCASE TO ALTAR ROOM</h3>
+        <p>Good luck.</p>
+        <img src="images/altarstaircase.jpg" alt="Room 10 Photo" style="width: 60%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-10-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-11-popup" popover>
+        <h3>THERMAL BATHS</h3>
+        <p>It's red water, not blood. It brings luck.</p>
+        <img src="images/thermalbaths.jpg" alt="Room 11 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-11-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <nav class="floor-nav">
+        <a href="index.html">Home</a> &bull; 
+        <a href="floor1.html">Floor 1</a> &bull; 
+        <a href="floor2.html">Floor 2</a> &bull; 
+        <a href="floor3.html">Floor 3</a>
+        <a href="underground.html">Underground</a>
+    </nav>
+
+    <div id="coord-helper" style="position: fixed; bottom: 20px; right: 20px; background: #212529; color: #ffffff; padding: 10px 15px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-size: 12px; z-index: 9999; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+        Click map to copy pin coordinates!
+    </div>
+
+</body>
+</html>

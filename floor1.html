@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site - Map</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8f9fa; 
+            color: #212529;            
+            line-height: 1.6;          
+            max-width: 1100px;         
+            margin: 40px auto;         
+            padding: 0 20px;
+            text-align: center;
+        } 
+
+        .map-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        
+        .map-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: #ff3131; 
+            color: #ffffff;             
+            border: 2px solid #ffffff;  
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;         
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .map-pin:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            background-color: #ffffff;
+            color: #ff3131;
+            border-color: #ff3131;
+        }
+
+        
+        [popover] {
+            font-family: 'Courier New', Courier, monospace;
+            border: 2px solid #212529;
+            background-color: #f8f9fa;
+            color: #212529;
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            text-align: left;
+
+            max-height: 85vh;         
+            overflow-y: auto; 
+        }
+
+        [popover]::backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .close-btn {
+            font-family: 'Courier New', Courier, monospace;
+            background: #212529;
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .floor-nav {
+            margin: 20px 0 30px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .floor-nav a {
+            color: #212529;            
+            text-decoration: none;     
+            margin: 0 6px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+       
+        .floor-nav a:hover {
+            background-color: #212529;
+            color: #ffffff;
+        }
+
+        .floor-nav a.active {
+            border-color: hsl(0, 0%, 100%);
+        }
+
+        /* DARK MODE */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #040404; 
+                color: #eaeaea;            
+            }
+
+            .map-container {
+                background-color: #121214; 
+                border-color: #333333;
+            }
+
+            
+            .map-image {
+                filter: invert(1) hue-rotate(180deg);
+            }
+            
+            [popover] {
+                background-color: #121214;
+                color: #eaeaea;
+                border-color: #eaeaea;
+            }
+            .close-btn {
+                background-color: #eaeaea;
+                color: #121214;
+            }
+            .back-home {
+                color: #eaeaea;
+            }
+
+        .floor-nav a {
+                color: #eaeaea;       
+            }
+
+            .floor-nav a:hover {
+                background-color: #eaeaea;
+                color: #040404;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FIRST FLOOR MAP</h1>
+    <p>Click on a red pin to view room details.</p>
+
+ 
+    <div class="map-container">
+        <img src="images/Floor1MAP.jpg" alt="First Floor Map" class="map-image">
+
+        <button popovertarget="room-1-popup" class="map-pin" style="top: 64.5%; left: 24.9%;">1</button>
+
+        <button popovertarget="room-2-popup" class="map-pin" style="top: 67.2%; left: 38.1%;">2</button>
+
+        <button popovertarget="room-3-popup" class="map-pin" style="top: 67.2%; left: 47.6%;">3</button>
+
+        <button popovertarget="room-4-popup" class="map-pin" style="top: 78.6%; left: 38.1%;">4</button>
+
+        <button popovertarget="room-5-popup" class="map-pin" style="top: 78.6%; left: 41.9%;">5</button>
+
+        <button popovertarget="room-6-popup" class="map-pin" style="top: 42.6%; left: 43.1%;">6</button>
+
+        <button popovertarget="room-7-popup" class="map-pin" style="top: 78.6%; left: 51.1%;">7</button>
+
+        <button popovertarget="room-8-popup" class="map-pin" style="top: 63.9%; left: 61.4%;">8</button>
+
+        <button popovertarget="room-9-popup" class="map-pin" style="top: 63.9%; left: 72.8%;">9</button>
+
+        <button popovertarget="room-10-popup" class="map-pin" style="top: 39.5%; left: 38.1%;">10</button>
+
+        <button popovertarget="room-11-popup" class="map-pin" style="top: 42.6%; left: 51.1%;">11</button>
+
+        <button popovertarget="room-12-popup" class="map-pin" style="top: 34.3%; left: 85.1%;">12</button>
+
+        <button popovertarget="room-13-popup" class="map-pin" style="top: 9.9%; left: 38.1%;">13</button>
+
+        <button popovertarget="room-14-popup" class="map-pin" style="top: 9.9%; left: 46.6%;;">14</button>
+
+        <button popovertarget="room-15-popup" class="map-pin" style="top: 9.9%; left: 63.5%;">15</button>
+
+        <button popovertarget="room-16-popup" class="map-pin" style="top: 24.6%; left: 63.5%;">16</button>
+
+        <button popovertarget="room-17-popup" class="map-pin" style="top: 9.9%; left: 71.6%;">17</button>
+
+        <button popovertarget="pool-popup" class="map-pin" style="top: 20.9%; left: 71.6%;">P</button>
+
+        <button popovertarget="room-18-popup" class="map-pin" style="top: 16.0%; left: 85.1%;">18</button>
+    </div>
+
+    <div id="room-1-popup" popover>
+        <h3>SANCTUARY</h3>
+        <p>Seeking for meaning in life? Worship services are held every Wednesday at hourly intervals, from 10:00 to 17:00, with each service lasting approximately one hour.</p>
+        <img src="images/church(1).jpg" alt="Room 1 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-1-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-2-popup" popover>
+        <h3>CHURCH HALLWAY</h3>
+        <p>You don't have to walk all the way up to the main lobby to get back in. Don't worry.</p>
+        <img src="images/secondentrance3.jpg" alt="Room 2 Photo" style="width: 80%; height: auto; margin: 10px auto 0 auto; display: block; border-radius: 4px;">
+        <button popovertarget="room-2-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+        <div id="room-3-popup" popover>
+        <h3>STUDY ROOM</h3>
+        <p>A quiet place to study the gospel of the Reverend Kovachev.</p>
+        <img src="images/studyroom.jpg" alt="Room 3 Photo" style="width: 60%; height: auto; margin: 10px auto 0 auto; display: block; border-radius: 4px;">
+        <button popovertarget="room-3-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-4-popup" popover>
+        <h3>STAIRCASE</h3>
+        <p>One day we'll fix the rug on the staircase hall.</p>
+        <img src="images/staircase.jpg" alt="Room 2 Photo" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-4-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-5-popup" popover>
+        <h3>WINDOW HALLWAY</h3>
+        <p>One of the few places with natural light in case you feel like you're loosing track of time.</p>
+        <img src="images/windowhallway.jpg" alt="Room 5 Photo" class="popup-img"  style="width: 60%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-5-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+   
+    <div id="room-6-popup" popover>
+        <h3>PIANO ROOM</h3>
+        <p>Music is the gateway to the soul.</p>
+        <img src="images/pianoroom.jpg" alt="Room 6 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-6-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-7-popup" popover>
+        <h3>STAIRCASE HALL</h3>
+        <p>Don't stand too close to the edge!</p>
+        <img src="images/staircasehall2.jpg" alt="Room 7 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-7-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-8-popup" popover>
+        <h3>MAIN LOBBY</h3>
+        <p>A nice place to take a nap.</p>
+        <img src="images/mainlobby.jpg" alt="Room 8 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-8-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-9-popup" popover>
+        <h3>KITCHEN</h3>
+        <p>Red Velvet was the Reverend's favorite cake.</p>
+        <img src="images/kitchen.jpg" alt="Room 9 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-9-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-10-popup" popover>
+        <h3>CLASSROOMS</h3>
+        <p>Serve a mission, become a priest.</p>
+        <img src="images/classrooms.jpg" alt="Room 10 Photo" class="popup-img" style="width: 25%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-10-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-11-popup" popover>
+        <h3>TAPESTRY HALL</h3>
+        <p>The Kovachev family was blessed by Kismet with its power.</p>
+        <img src="images/trapestryhall.jpg" alt="Room 11 Photo" class="popup-img" style="width: 60%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-11-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-12-popup" popover>
+        <h3>DINNER HALL</h3>
+        <p>The board decides your worth during dinner.</p>
+        <img src="images/dinnerhall.jpg" alt="Room 12 Photo" class="popup-img" style="width: 25%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-12-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-13-popup" popover>
+        <h3>BATHROOM</h3>
+        <p>Please stop throwing anything that's not paper on the W.C.</p>
+        <img src="images/bathroom1.jpg" alt="Room 13 Photo" class="popup-img" style="width: 25%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-13-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-14-popup" popover>
+        <h3>CEREMONY ROOM</h3>
+        <p>Once upon a time the was a man with a soul so pure he was blessed with the power to control fate itself. This man was His Most Reverend Eminence Bozhidar Kovachev.</p>
+        <img src="images/ceremonyroom.jpg" alt="Room 14 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-14-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-15-popup" popover>
+        <h3>WARDROBE</h3>
+        <p>Who are you playing?.</p>
+        <img src="images/wardrobe.jpg" alt="Room 15 Photo" class="popup-img" style="width: 25%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-15-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-16-popup" popover>
+        <h3>HALLWAY OF CATHARSIS</h3>
+        <p>Let it spin, let it spin, let it spin.</p>
+        <img src="images/tocatharsisroom.jpg" alt="Room 16 Photo" class="popup-img" style="width: 25%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-16-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-17-popup" popover>
+        <h3>CATHARSIS ROOM</h3>
+        <p>will you balance accounts with Kismet?</p>
+        <img src="images/catharsisroomroom.jpg" alt="Room 17 Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-17-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+       <div id="pool-popup" popover>
+        <h3>CATHARSIS ROOM</h3>
+        <p>will you balance accounts with Kismet?</p>
+        <img src="images/catharsisroom.jpg" alt="Pool Photo" class="popup-img" style="width: 100%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="pool-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <div id="room-18-popup" popover>
+        <h3>STAIRWAY TO ALTAR ROOM</h3>
+        <p>Kismet is calling you.</p>
+        <img src="images/toaltarroom.jpg" alt="Room 18 Photo" class="popup-img" style="width: 30%; height: auto; margin-top: 10px; border-radius: 4px;">
+        <button popovertarget="room-18-popup" popovertargetaction="hide" class="close-btn">Close</button>
+    </div>
+
+    <nav class="floor-nav">
+        <a href="index.html">Home</a> &bull; 
+        <a href="floor1.html">Floor 1</a> &bull; 
+        <a href="floor2.html">Floor 2</a> &bull; 
+        <a href="floor3.html">Floor 3</a> &bull;
+        <a href="underground.html">Underground</a>
+    </nav>
+
+    <div id="coord-helper" style="position: fixed; bottom: 20px; right: 20px; background: #212529; color: #ffffff; padding: 10px 15px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-size: 12px; z-index: 9999; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+        Click map to copy pin coordinates!
+    </div>
+
+</body>
+</html>

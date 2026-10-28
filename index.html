@@ -3,19 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>My Site</title>
     <style>
         body {
-        font-family: 'Courier New', Courier, monospace;
-        background-color: #f8f9fa; 
-        color: #212529;            
-        line-height: 1.6;          
-        max-width: 680px;          
-        margin: 60px auto;         
-        padding: 0 20px;  
-        font-weight: bold;   
-        }     
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8f9fa; 
+            color: #212529;            
+            line-height: 1.6;          
+            max-width: 600px;         
+            margin: 80px auto;         
+            font-weight: normal;
+            overflow-x: hidden;
+        } 
 
+        .gif-container {
+            position: relative;
+            display: inline-block;
+            width: 100vw;       
+            height: 400px;
+            margin-left: calc(-50vw + 50%); 
+
+        }
+
+        .gif {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  
+        }
+
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;       
+            height: auto;
+            z-index: 10;
+            animation: sideToSide 4s ease-in-out infinite;
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: clamp(200px, 60vw, 240px);    
+            }
+        }
+            
+            .gif-container {
+                height: 280px;   
+            }
+
+        
+        @keyframes sideToSide {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateX(0px);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateX(15px);
+            }
+        }
+
+        ul.episode-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.episode-list li {
+            margin-bottom: 10px; 
+
+        }
         a {
             color: #333333;
             text-decoration: none;
@@ -25,50 +82,57 @@
         a:hover {
             color: #ffffff;
             background-color: #000000;
-            transform: translateY(-2px)
+            transform: translateY(-2px);
         }
+
     
         @media (prefers-color-scheme: dark) {
-        body {
-            background-color: #040404; 
-            color: #eaeaea;            
-        }
+            body {
+                background-color: #040404; 
+                color: #eaeaea;            
+            }
 
-        a {
-            color: #eaeaea;           
-        }
+            a {
+                color: #eaeaea;          
+            }
 
-        a:hover {
-            color: #121214;            
-            background-color: #eaeaea; 
+            a:hover {
+                color: #121214;            
+                background-color: #eaeaea; 
+            }
         }
-    }
-
     </style>
 </head>
 <body>
 
-    <h1>hi.</h1>
+    <div class="gif-container">
+        <img src="AIHlogo_BlackOutline.svg" alt="My Logo" class="logo">
+        <img src="movingwater.gif" alt="Red water" class="gif">
+    </div>
+
+    <h1>HI</h1>
+
     <p>please excuse how ugly this looks! It's a work in progress...</p>
 
-    <h1>episodes.</h1>
+    <h1>EPISODES</h1>
 
-    
     <nav>
-        <a href="101.html">1. Nothing New Under The Sun</a>  
+        <ul class="episode-list">
+            <li><a href="101.html">1. Nothing New Under The Sun.</a></li>
+            <li><a href="102.html">2. Ashes to Ashes.</a></li>
+            <li><a href="103.html">3. The Myth of Kismet's Box.</a></li>
+            <li><a href="104.html">4. Master of Fortune.</a></li>
+            <li><a href="105.html">5. Knock Knock on People's Doors.</a></li>
+            <li><a href="106.html">6. The Outsider.</a></li>
+            <li><a href="107.html">7. If Walls Could Talk.</a></li>
+        </ul>
     </nav>
-        <a href="102.html">2. Ashes to Ashes</a> <br>
-    </nav>
-        <a href="103.html">3. The Myth of Kismet Box</a> <br>
-    </nav>
-        <a href="104.html">4. Master of Fortune</a> <br>
-    </nav>
-        <a href="105.html">5. Knock Knock on People's Doors</a> <br>
-    </nav>
-        <a href="106.html">6. The Outsider</a> <br>
-    </nav>
-        <a href="107.html">7. If Walls Could Talk</a> <br>
-    </nav>
+
+<h1>TAKE A LOOK AROUND</h1>
+
+<p>Not in the mood? Don't worry. They say walking is good for clearing your mind.</p>
+    
+    <a href="floor1.html" class="map-link-btn">ENTER MAP &rarr;</a>
 
 </body>
 </html>
